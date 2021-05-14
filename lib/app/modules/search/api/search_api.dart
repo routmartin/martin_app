@@ -3,16 +3,19 @@ import 'package:get/instance_manager.dart';
 import 'package:martin_app/app/core/api_base_helper.dart';
 import 'package:martin_app/app/model/photo.dart';
 
-class ExploreShowApi {
+class SearchApi {
   final ApiBaseHelper _dio = Get.find<ApiBaseHelper>();
-  Future<List<Photo>> fetchExploreCollection({page, collectionId}) async {
+  Future<List<Photo>> searchPhoto({page, query}) async {
     final Response response = await _dio.getMethodWithHeader(
-      'collections/$collectionId/photos/',
+      'search/photos/',
       body: {
+        "query": query,
         "page": page,
-        "per_page": '20',
+        "per_page": '30',
       },
     );
-    return (response.data as List).map((e) => Photo.fromJson(e)).toList();
+    return (response.data['results'] as List)
+        .map((e) => Photo.fromJson(e))
+        .toList();
   }
 }

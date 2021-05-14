@@ -22,9 +22,6 @@ class ApiBaseHelper {
       ..interceptors.add(
         InterceptorsWrapper(
           onRequest: (options) async {
-            options.queryParameters.addAll({
-              "Authorization": "7O8VnUVu9MaQZZSMYIhvvxankUEfYNfjGiL3EkHfVxE"
-            });
             print('Endpoint-> ${options.path}');
             print('queryParameters-> ${options.queryParameters}');
             return options;
@@ -126,6 +123,7 @@ class ApiBaseHelper {
       );
       return throw "No Internet Connection";
     } else if (exc.type == DioErrorType.CONNECT_TIMEOUT) {
+      Get.snackbar('No Internet', 'Please Check Your Connection');
       return throw "Request timeout";
     } else if (exc.type == DioErrorType.RESPONSE) {
       switch (exc.response.statusCode) {

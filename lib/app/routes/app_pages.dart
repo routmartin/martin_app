@@ -9,6 +9,10 @@ import 'package:martin_app/app/modules/main/bindings/main_binding.dart';
 import 'package:martin_app/app/modules/main/views/main_view.dart';
 import 'package:martin_app/app/modules/preview/bindings/preview_binding.dart';
 import 'package:martin_app/app/modules/preview/views/preview_view.dart';
+import 'package:martin_app/app/modules/search/bindings/search_binding.dart';
+import 'package:martin_app/app/modules/search/views/search_view.dart';
+import 'package:martin_app/app/modules/topic/bindings/topic_detail_biding.dart';
+import 'package:martin_app/app/modules/topic/views/topic_detail_view.dart';
 import 'package:martin_app/app/modules/topic/views/topic_view.dart';
 
 part 'app_routes.dart';
@@ -32,10 +36,9 @@ class AppPages {
       page: () => ExploreView(),
     ),
     GetPage(
-      name: Routes.EXPLORE_SHOW,
-      page: () => ExploreShowView(),
-      binding: ExploreShowBinding(),
-    ),
+        name: Routes.EXPLORE_SHOW,
+        page: () => ExploreShowView(),
+        binding: ExploreShowBinding()),
     GetPage(
       name: Routes.PREVIEW,
       page: () => PreviewView(),
@@ -44,6 +47,15 @@ class AppPages {
     GetPage(
       name: Routes.TOPIC,
       page: () => TopicView(),
+    ),
+    GetPage(
+        name: Routes.TOPIC_DETAIL,
+        page: () => TopicDetailView(),
+        binding: TopicDetailBinding()),
+    GetPage(
+      name: Routes.SEARCH,
+      page: () => SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }

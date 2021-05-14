@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:martin_app/app/model/topic.dart';
+import 'package:martin_app/app/model/photo.dart';
 import 'package:martin_app/app/modules/topic/api/topic_api.dart';
 
-class TopicController extends GetxController {
+class TopicDetailController extends GetxController {
   final TopicApi _topicApi = Get.find();
-  List<Topic> topicList = [];
+  List<Photo> photoList = [];
   int _page = 1;
   bool isLoading = true;
   ScrollController scrollController = ScrollController();
@@ -19,12 +19,14 @@ class TopicController extends GetxController {
   @override
   void onReady() {
     super.onReady();
-    _fetchTopicData();
+    _fetchTopicPhoto();
   }
 
-  _fetchTopicData() {
-    _topicApi.fetchTopicList(page: _page).then((data) {
-      if (data.isNotEmpty) topicList.addAll(data);
+  _fetchTopicPhoto() {
+    _topicApi
+        .fetchTopicPhoto(page: _page, topicId: Get.arguments[0])
+        .then((data) {
+      if (data.isNotEmpty) photoList.addAll(data);
       _page++;
       isLoading = false;
       update();
@@ -33,14 +35,14 @@ class TopicController extends GetxController {
 
   onRefresh() {
     _page = 1;
-    topicList.clear();
-    _fetchTopicData();
+    photoList.clear();
+    _fetchTopicPhoto();
   }
 
   _scrollListener() {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
-      _fetchTopicData();
+      _fetchTopicPhoto();
     }
   }
 }

@@ -4,7 +4,7 @@ import 'package:get/route_manager.dart';
 import 'package:image_fade/image_fade.dart';
 import 'package:martin_app/app/model/collection.dart';
 import 'package:martin_app/app/routes/app_pages.dart';
-import 'package:martin_app/app/share_widget/center_indicator.dart';
+import 'package:martin_app/app/utils/style/app_decoraction.dart';
 
 class ExploreCard extends StatelessWidget {
   final Collection collection;
@@ -103,21 +103,9 @@ class ExploreCard extends StatelessWidget {
                       image: NetworkImage(
                         collection.previewPhotos[index].urls.small,
                       ),
-                      placeholder: CenterIndicator(),
-                      loadingBuilder: (BuildContext context, Widget child,
-                          ImageChunkEvent event) {
-                        if (event == null) {
-                          return child;
-                        }
-                        return Center(
-                          child: CircularProgressIndicator(
-                            value: event.expectedTotalBytes == null
-                                ? 0.0
-                                : event.cumulativeBytesLoaded /
-                                    event.expectedTotalBytes,
-                          ),
-                        );
-                      },
+                      placeholder: Container(
+                        color: AppColor.darkBackGround,
+                      ),
                       errorBuilder: (BuildContext context, Widget child,
                           dynamic exception) {
                         return Container(

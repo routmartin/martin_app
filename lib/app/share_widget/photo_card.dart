@@ -4,7 +4,6 @@ import 'package:image_fade/image_fade.dart';
 import 'package:martin_app/app/model/photo.dart';
 import 'package:martin_app/app/routes/app_pages.dart';
 import 'package:martin_app/app/utils/style/app_decoraction.dart';
-import 'package:shimmer/shimmer.dart';
 
 class PhotoCard extends StatelessWidget {
   final Photo data;
@@ -32,27 +31,9 @@ class PhotoCard extends StatelessWidget {
             alignment: Alignment.center,
             fit: BoxFit.cover,
             image: NetworkImage(data.urls.small),
-            placeholder: Shimmer.fromColors(
-              baseColor: AppColor.darkBackGround,
-              highlightColor: Colors.grey[200],
-              child: Container(
-                height: Get.height,
-                width: Get.width,
-              ),
+            placeholder: Container(
+              color: AppColor.darkBackGround,
             ),
-            loadingBuilder:
-                (BuildContext context, Widget child, ImageChunkEvent event) {
-              if (event == null) {
-                return child;
-              }
-              return Center(
-                child: CircularProgressIndicator(
-                  value: event.expectedTotalBytes == null
-                      ? 0.0
-                      : event.cumulativeBytesLoaded / event.expectedTotalBytes,
-                ),
-              );
-            },
             errorBuilder:
                 (BuildContext context, Widget child, dynamic exception) {
               return Container(

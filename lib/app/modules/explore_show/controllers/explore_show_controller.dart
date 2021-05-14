@@ -27,6 +27,7 @@ class ExploreShowController extends GetxController {
 
   _fetchExploreShowData() {
     if (photoCollectionList.length < Get.arguments[2]) {
+      print(Get.arguments[2]);
       _exploreShowApi
           .fetchExploreCollection(page: page, collectionId: Get.arguments[0])
           .then((data) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:martin_app/app/utils/style/app_decoraction.dart';
 
 class CenterIndicator extends StatelessWidget {
   const CenterIndicator({
@@ -10,7 +11,7 @@ class CenterIndicator extends StatelessWidget {
     return Center(
       child: Container(
         alignment: Alignment.center,
-        color: Theme.of(context).accentColor,
+        color: AppColor.darkBackGround,
         child: CircularProgressIndicator(
           strokeWidth: 0.9,
           valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),

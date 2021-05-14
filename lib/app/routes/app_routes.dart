@@ -9,4 +9,6 @@ abstract class Routes {
   static const EXPLORE_SHOW = '/explore-show';
   static const PREVIEW = '/preview';
   static const TOPIC = '/topic';
+  static const TOPIC_DETAIL = '/topic_detail';
+  static const SEARCH = '/search';
 }

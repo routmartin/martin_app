@@ -1,7 +1,9 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_fade/image_fade.dart';
 import 'package:martin_app/app/model/photo.dart';
+import 'package:martin_app/app/share_widget/photo_card.dart';
 
 import 'center_indicator.dart';
 
@@ -9,11 +11,11 @@ class AnimateGridViewPhoto extends StatelessWidget {
   const AnimateGridViewPhoto({
     Key key,
     @required this.topicPhotoList,
-    @required this.size,
+    @required this.scrollController,
   }) : super(key: key);
 
   final List<Photo> topicPhotoList;
-  final Size size;
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +40,14 @@ class AnimateGridViewPhoto extends StatelessWidget {
     );
 
     return LiveGrid.options(
+      controller: scrollController,
       itemCount: topicPhotoList.length,
       options: options,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
-        childAspectRatio: size.height / 1500,
+        childAspectRatio: Get.height / 1300,
       ),
       padding: EdgeInsets.all(10),
       itemBuilder:
@@ -61,58 +64,7 @@ class AnimateGridViewPhoto extends StatelessWidget {
               end: Offset.zero,
             ).animate(animation),
             // Paste you Widget
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 5,
-                      color: Color(0xff0E0F0E).withOpacity(0.22),
-                      offset: Offset(0, 3),
-                    )
-                  ],
-                ),
-                child: ImageFade(
-                  height: MediaQuery.of(context).size.height,
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    topicPhotoList[index].urls.small,
-                  ),
-                  placeholder: CenterIndicator(),
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent event) {
-                    if (event == null) {
-                      return child;
-                    }
-                    return Center(
-                      child: CircularProgressIndicator(
-                        value: event.expectedTotalBytes == null
-                            ? 0.0
-                            : event.cumulativeBytesLoaded /
-                                event.expectedTotalBytes,
-                      ),
-                    );
-                  },
-                  errorBuilder:
-                      (BuildContext context, Widget child, dynamic exception) {
-                    return Container(
-                      color: Color(0xFF6F6D6A),
-                      child: Center(
-                        child: Icon(
-                          Icons.warning,
-                          color: Colors.black26,
-                          size: 128.0,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
+            child: PhotoCard(data: topicPhotoList[index]),
           ),
         );
       },

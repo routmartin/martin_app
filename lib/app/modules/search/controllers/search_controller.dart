@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:martin_app/app/model/topic.dart';
-import 'package:martin_app/app/modules/topic/api/topic_api.dart';
+import 'package:martin_app/app/model/photo.dart';
+import 'package:martin_app/app/modules/search/api/search_api.dart';
 
-class TopicController extends GetxController {
-  final TopicApi _topicApi = Get.find();
-  List<Topic> topicList = [];
+class SearchController extends GetxController {
+  final SearchApi _searchApi = Get.find();
+  List<Photo> photoList = [];
   int _page = 1;
   bool isLoading = true;
+  String query;
   ScrollController scrollController = ScrollController();
 
   @override
   void onInit() {
     super.onInit();
+    query = "";
     scrollController.addListener(_scrollListener);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-    _fetchTopicData();
-  }
-
-  _fetchTopicData() {
-    _topicApi.fetchTopicList(page: _page).then((data) {
-      if (data.isNotEmpty) topicList.addAll(data);
+  void searchPhoto() async {
+    await _searchApi.searchPhoto(page: _page, query: query).then((data) {
+      if (data.isNotEmpty) photoList.addAll(data);
       _page++;
       isLoading = false;
       update();
@@ -33,14 +29,14 @@ class TopicController extends GetxController {
 
   onRefresh() {
     _page = 1;
-    topicList.clear();
-    _fetchTopicData();
+    photoList.clear();
+    searchPhoto();
   }
 
   _scrollListener() {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
-      _fetchTopicData();
+      searchPhoto();
     }
   }
 }
