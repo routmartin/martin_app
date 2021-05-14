@@ -3,7 +3,6 @@ import 'package:get/route_manager.dart';
 import 'package:image_fade/image_fade.dart';
 import 'package:martin_app/app/model/photo.dart';
 import 'package:martin_app/app/routes/app_pages.dart';
-import 'package:martin_app/app/utils/style/app_decoraction.dart';
 
 class PhotoCard extends StatelessWidget {
   final Photo data;
@@ -32,7 +31,7 @@ class PhotoCard extends StatelessWidget {
             fit: BoxFit.cover,
             image: NetworkImage(data.urls.small),
             placeholder: Container(
-              color: AppColor.darkBackGround,
+              color: Colors.black38,
             ),
             errorBuilder:
                 (BuildContext context, Widget child, dynamic exception) {
@@ -42,7 +41,7 @@ class PhotoCard extends StatelessWidget {
                   child: Icon(
                     Icons.warning,
                     color: Colors.black26,
-                    size: 128.0,
+                    size: 30.0,
                   ),
                 ),
               );

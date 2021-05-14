@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class AppColor {
   static Color lightbackGroundColor = Color(0xffF4F4F7);
   static Color darkBackGround = Color(0xff121212);
+  static Color kPrimaryColor = Color(0xFF6F35A5);
+  static Color kPrimaryColorkPrimaryLightColor = Color(0xFFF1E6FF);
 }
 
 class AppTextStyle {

@@ -1,11 +1,8 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_fade/image_fade.dart';
 import 'package:martin_app/app/model/photo.dart';
 import 'package:martin_app/app/share_widget/photo_card.dart';
-
-import 'center_indicator.dart';
 
 class AnimateGridViewPhoto extends StatelessWidget {
   const AnimateGridViewPhoto({
@@ -41,7 +38,9 @@ class AnimateGridViewPhoto extends StatelessWidget {
 
     return LiveGrid.options(
       controller: scrollController,
+      addAutomaticKeepAlives: true,
       itemCount: topicPhotoList.length,
+      shrinkWrap: true,
       options: options,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,

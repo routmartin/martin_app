@@ -114,17 +114,14 @@ class ApiBaseHelper {
 
   /// to handle error base on dio error
   dynamic _onHandleDioError(exc) {
-    if (exc.error is SocketException) {
+    if (exc.error is SocketException ||
+        exc.type == DioErrorType.CONNECT_TIMEOUT) {
       Get.snackbar(
         'No Internet Connection',
         'Please check your connection first',
-        backgroundColor: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.TOP,
       );
       return throw "No Internet Connection";
-    } else if (exc.type == DioErrorType.CONNECT_TIMEOUT) {
-      Get.snackbar('No Internet', 'Please Check Your Connection');
-      return throw "Request timeout";
     } else if (exc.type == DioErrorType.RESPONSE) {
       switch (exc.response.statusCode) {
         case 400:

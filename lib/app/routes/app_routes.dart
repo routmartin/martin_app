@@ -11,4 +11,6 @@ abstract class Routes {
   static const TOPIC = '/topic';
   static const TOPIC_DETAIL = '/topic_detail';
   static const SEARCH = '/search';
+  static const SEARCH_RESULT = '/search_result';
+  static const LOGIN = '/login';
 }
