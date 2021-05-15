@@ -29,9 +29,7 @@ class LoginView extends GetView<LoginController> {
                 'LOG IN',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
-              SizedBox(
-                height: Get.width * .06,
-              ),
+              SizedBox(height: Get.width * .06),
               InputFieldText(
                 child: TextField(
                   onChanged: (val) => print(val),
@@ -70,14 +68,13 @@ class LoginView extends GetView<LoginController> {
                 color: AppColor.kPrimaryColor,
                 txtColor: Colors.white,
               ),
-              SizedBox(
-                height: Get.height * .03,
-              ),
+              SizedBox(height: Get.height * .03),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SocialMediaIconButton(
                     imgUrl: 'assets/icons/google.png',
+                    onTap: controller.signInWithGoogle,
                   ),
                   SocialMediaIconButton(
                     imgUrl: 'assets/icons/facebook.png',

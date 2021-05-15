@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="martin_app">Martin App</string>
+  <string name="facebook_app_id">4052452218181978</string>
+  <string name="fb_login_protocol_scheme">188d22213e7f504403d563dceb8d8381</string>
+</resources>

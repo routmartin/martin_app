@@ -2,7 +2,6 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 class ApiBaseHelper {
@@ -21,13 +20,13 @@ class ApiBaseHelper {
     return dio
       ..interceptors.add(
         InterceptorsWrapper(
-          onRequest: (options) async {
+          onRequest: (options, handler) async {
             print('Endpoint-> ${options.path}');
             print('queryParameters-> ${options.queryParameters}');
             return options;
           },
-          onError: (error) {},
-          onResponse: (response) {},
+          onError: (error, handler) {},
+          onResponse: (response, handler) {},
         ),
       );
   }
@@ -36,11 +35,11 @@ class ApiBaseHelper {
     return dio
       ..interceptors.add(
         InterceptorsWrapper(
-          onRequest: (options) async {
+          onRequest: (options, handler) async {
             return options;
           },
-          onError: (error) {},
-          onResponse: (response) {},
+          onError: (error, handler) {},
+          onResponse: (response, handler) {},
         ),
       );
   }
@@ -115,14 +114,14 @@ class ApiBaseHelper {
   /// to handle error base on dio error
   dynamic _onHandleDioError(exc) {
     if (exc.error is SocketException ||
-        exc.type == DioErrorType.CONNECT_TIMEOUT) {
+        exc.type == DioErrorType.connectTimeout) {
       Get.snackbar(
         'No Internet Connection',
         'Please check your connection first',
         snackPosition: SnackPosition.TOP,
       );
       return throw "No Internet Connection";
-    } else if (exc.type == DioErrorType.RESPONSE) {
+    } else if (exc.type == DioErrorType.response) {
       switch (exc.response.statusCode) {
         case 400:
           throw "Invalid Request: ${exc.response.data}";
