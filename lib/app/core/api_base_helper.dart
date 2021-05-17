@@ -20,13 +20,13 @@ class ApiBaseHelper {
     return dio
       ..interceptors.add(
         InterceptorsWrapper(
-          onRequest: (options, handler) async {
+          onRequest: (options) async {
             print('Endpoint-> ${options.path}');
             print('queryParameters-> ${options.queryParameters}');
             return options;
           },
-          onError: (error, handler) {},
-          onResponse: (response, handler) {},
+          onError: (error) {},
+          onResponse: (response) {},
         ),
       );
   }
@@ -35,11 +35,11 @@ class ApiBaseHelper {
     return dio
       ..interceptors.add(
         InterceptorsWrapper(
-          onRequest: (options, handler) async {
+          onRequest: (options) async {
             return options;
           },
-          onError: (error, handler) {},
-          onResponse: (response, handler) {},
+          onError: (error) {},
+          onResponse: (response) {},
         ),
       );
   }
@@ -114,14 +114,14 @@ class ApiBaseHelper {
   /// to handle error base on dio error
   dynamic _onHandleDioError(exc) {
     if (exc.error is SocketException ||
-        exc.type == DioErrorType.connectTimeout) {
+        exc.type == DioErrorType.CONNECT_TIMEOUT) {
       Get.snackbar(
         'No Internet Connection',
         'Please check your connection first',
         snackPosition: SnackPosition.TOP,
       );
       return throw "No Internet Connection";
-    } else if (exc.type == DioErrorType.response) {
+    } else if (exc.type == DioErrorType.RESPONSE) {
       switch (exc.response.statusCode) {
         case 400:
           throw "Invalid Request: ${exc.response.data}";

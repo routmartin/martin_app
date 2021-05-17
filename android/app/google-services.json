@@ -14,7 +14,14 @@
       },
       "oauth_client": [
         {
-       
+          "client_id": "869385002357-vcgg5dv4cfllldj3f38p0emukia67e8s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "come.martin.cambobase.martin_app",
+            "certificate_hash": "3dcf17a33f1ffbf4dbd212e556c8db36ec9a0cd2"
+          }
+        },
+        {
           "client_id": "869385002357-8qjj70ab3l63m310catbhkdvsk5e5j7b.apps.googleusercontent.com",
           "client_type": 3
         }

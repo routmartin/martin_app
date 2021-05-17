@@ -2,5 +2,6 @@
 <resources>
   <string name="app_name">Martin App</string>
   <string name="facebook_app_id">4052452218181978</string>
-  <string name="fb_login_protocol_scheme">a49ee6154480bed9de07c7355109add1</string>
+  <string name="fb_login_protocol_scheme">fb4052452218181978</string>
 </resources>
+

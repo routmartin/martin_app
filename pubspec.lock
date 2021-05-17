@@ -98,7 +98,7 @@ packages:
       name: dio
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "3.0.10"
   encrypt:
     dependency: transitive
     description:
@@ -132,27 +132,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_facebook_auth:
+  flutter_facebook_login:
     dependency: "direct main"
     description:
-      name: flutter_facebook_auth
+      name: flutter_facebook_login
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.3+1"
-  flutter_facebook_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_facebook_auth_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.2"
-  flutter_facebook_auth_web:
-    dependency: transitive
-    description:
-      name: flutter_facebook_auth_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.2"
+    version: "3.0.0"
   flutter_secure_storage:
     dependency: transitive
     description:
@@ -204,7 +190,7 @@ packages:
       name: google_fonts
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.0"
+    version: "1.1.2"
   google_sign_in:
     dependency: "direct main"
     description:
@@ -232,14 +218,14 @@ packages:
       name: http
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.13.3"
+    version: "0.12.2"
   http_parser:
     dependency: transitive
     description:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "3.1.4"
   image_fade:
     dependency: "direct main"
     description:

@@ -1,4 +1,4 @@
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:martin_app/app/modules/login/api/login_api.dart';
@@ -6,6 +6,7 @@ import 'package:martin_app/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
   final LoginApi _loginApi = Get.find();
+
   signInWithGoogle() async {
     GoogleSignInAuthentication googleSignInAuthentication =
         await _loginApi.signInWithGoogle();
@@ -19,28 +20,19 @@ class LoginController extends GetxController {
   }
 
   signInWithFacebook() async {
-    final LoginResult result = await _loginApi.signInWithFacebook();
+    final result = await _loginApi.signInWithFacebook();
+
     switch (result.status) {
-      case LoginStatus.success:
-        if (result.accessToken != null) {
-          print(result.accessToken);
-          Get.toNamed(Routes.MAIN);
-        }
+      case FacebookLoginStatus.loggedIn:
+        print(result.accessToken.token);
+        Get.toNamed(Routes.MAIN);
         break;
-      case LoginStatus.cancelled:
-        Get.snackbar('cancelled', result.message,
-            snackPosition: SnackPosition.BOTTOM);
-        print(result.message);
+      case FacebookLoginStatus.cancelledByUser:
+        print('cancelledByUser');
         break;
-      case LoginStatus.failed:
-        Get.snackbar('failed', result.message,
-            snackPosition: SnackPosition.BOTTOM);
-        print(result.message);
+      case FacebookLoginStatus.error:
+        print(result.errorMessage);
         break;
-      default:
-        Get.snackbar('default', result.message,
-            snackPosition: SnackPosition.BOTTOM);
-        print(result.message);
     }
   }
 }
