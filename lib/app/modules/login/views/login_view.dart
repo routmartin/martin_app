@@ -9,7 +9,7 @@ import 'package:martin_app/app/utils/style/app_decoraction.dart';
 import '../controllers/login_controller.dart';
 import 'widget/text_field.dart';
 
-class LoginView extends GetView<LoginController> {
+class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,9 +59,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: Get.height * 0.03,
-              ),
+              SizedBox(height: Get.height * 0.03),
               RoundedButton(
                 title: 'LOGIN',
                 press: () => print('login'),
@@ -69,21 +67,23 @@ class LoginView extends GetView<LoginController> {
                 txtColor: Colors.white,
               ),
               SizedBox(height: Get.height * .03),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SocialMediaIconButton(
-                    imgUrl: 'assets/icons/google.png',
-                    onTap: controller.signInWithGoogle,
-                  ),
-                  SocialMediaIconButton(
-                    imgUrl: 'assets/icons/facebook.png',
-                  ),
-                  SocialMediaIconButton(
-                    imgUrl: 'assets/icons/apple.png',
-                  )
-                ],
-              )
+              GetBuilder<LoginController>(builder: (_controller) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SocialMediaIconButton(
+                      imgUrl: 'assets/icons/google.png',
+                      onTap: _controller.signInWithGoogle,
+                    ),
+                    SocialMediaIconButton(
+                        imgUrl: 'assets/icons/facebook.png',
+                        onTap: _controller.signInWithFacebook),
+                    SocialMediaIconButton(
+                      imgUrl: 'assets/icons/apple.png',
+                    )
+                  ],
+                );
+              })
             ],
           ),
         ),
