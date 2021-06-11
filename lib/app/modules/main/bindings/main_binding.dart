@@ -8,9 +8,7 @@ class MainBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<MainController>(() => MainController());
-
     Get.lazyPut<ExploreApi>(() => ExploreApi());
-
     Get.lazyPut<TopicApi>(() => TopicApi());
   }
 }
