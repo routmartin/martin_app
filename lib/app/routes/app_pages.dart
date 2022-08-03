@@ -22,7 +22,7 @@ import 'package:martin_app/app/modules/topic/views/topic_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.MAIN;
 
   static final routes = [
     GetPage(

@@ -19,8 +19,6 @@ class Topic {
 
   factory Topic.fromJson(String str) => Topic.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory Topic.fromMap(Map<String, dynamic> json) => Topic(
         id: json["id"],
         slug: json["slug"],
